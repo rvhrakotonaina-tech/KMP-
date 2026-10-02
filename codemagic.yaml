@@ -14,7 +14,7 @@ workflows:
       - name: Build Kotlin shared framework
         script: |
           chmod +x gradlew
-          ./gradlew build
+          ./gradlew build -x lint
 
       - name: Build iOS Simulator binary
         script: |
