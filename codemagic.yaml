@@ -2,24 +2,21 @@ workflows:
   ios-kmp-workflow:
     name: Build KMP iOS App (Unsigned)
     max_build_duration: 60
-    instance_type: mac_mini_m2   # Runs on cloud macOS servers
+    instance_type: mac_mini_m2
 
     environment:
+      java: 17  # Codemagic natively sets up Java 17 for the environment here
       vars:
-        XCODE_WORKSPACE: "iosApp/iosApp.xcworkspace" # Adjust path if using .xcodeproj
+        XCODE_WORKSPACE: "iosApp/iosApp.xcworkspace" # Adjust if you use .xcodeproj
         XCODE_SCHEME: "iosApp"
 
     scripts:
-      - name: Set Java version
-        script: |
-          jdk default 17
-
       - name: Build Kotlin shared framework
         script: |
           chmod +x gradlew
           ./gradlew :shared:build
 
-      - name: Build iOS Simulator binary (Checks for compilation errors)
+      - name: Build iOS Simulator binary
         script: |
           xcodebuild build \
             -workspace "$XCODE_WORKSPACE" \
