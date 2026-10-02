@@ -19,8 +19,8 @@ workflows:
       - name: Build iOS Simulator binary
         script: |
           xcodebuild build \
-            -workspace "$XCODE_PROJECT" \
-            -scheme "$XCODE_SCHEME" \
+            -project "iosApp/iosApp.xcodeproj" \
+            -scheme "iosApp" \
             -sdk iphonesimulator \
             -configuration Debug \
             CODE_SIGN_IDENTITY="" \
