@@ -7,7 +7,7 @@ workflows:
     environment:
       java: 17  # Codemagic natively sets up Java 17 for the environment here
       vars:
-        XCODE_WORKSPACE: "iosApp/iosApp.xcworkspace" # Adjust if you use .xcodeproj
+        XCODE_PROJECT: "iosApp/iosApp.xcodeproj" # Adjust if you use .xcodeproj
         XCODE_SCHEME: "iosApp"
 
     scripts:
@@ -19,7 +19,7 @@ workflows:
       - name: Build iOS Simulator binary
         script: |
           xcodebuild build \
-            -workspace "$XCODE_WORKSPACE" \
+            -workspace "$XCODE_PROJECT" \
             -scheme "$XCODE_SCHEME" \
             -sdk iphonesimulator \
             -configuration Debug \
